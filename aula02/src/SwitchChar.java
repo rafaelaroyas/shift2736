@@ -1,7 +1,7 @@
 public class SwitchChar {
     public static void main(String[] args) {
         char sinal = "X";
-        switch (sinal){
+        switch (sinal) {
             case "x":
             case "X":
             case "*":
@@ -11,4 +11,6 @@ public class SwitchChar {
                 System.out.println("Adição");break;
             case "-":
                 System.out.println("Subtração");break;
+        }
+    }
 }
