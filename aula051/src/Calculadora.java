@@ -1,10 +1,15 @@
+import java.io.FilterOutputStream;
 import java.util.Scanner;
 
 public class Calculadora {
-    //funcionalidade/responsabilidade e esse subprograma estará seprado do MAIN
-    //Procedimento = função sem retorno
-    //Sintaxe: public static void nomeFunção(){//funcionalidade}
 
+    //Variáveis globais => declaradas na classe fora de qualquer função
+    //Sintaxe => public static tipo nomeVariavel;
+    public static double resultado;
+
+    //Funcionalidade/responsabilidade e esse subprograma vai estar separado do main
+    //Procedimento = função sem retorno
+    //Sintaxe => public static void nomeFuncao(){//funcionalidade}
     public static void exibirMenu(){
         System.out.println("PROGRAMA CALCULADORA");
         System.out.println("----------------------------");
@@ -18,7 +23,9 @@ public class Calculadora {
         System.out.println(".: ");
     }
 
-    public static void exibirResultado(double resultado){
+    //Função sem retorno (VOID) mas que precisa receber algo
+    //public static void nomeFunção(parametros){}
+    public static void exibirResultado(){
         System.out.println("Resultado = " + resultado);
     }
 
@@ -26,54 +33,67 @@ public class Calculadora {
         System.out.println(operacao + " = " + resultado);
     }
 
-    public static void somar (double n1, double n2){
-        System.out.println("Realizando a soma de " + n1 + " + " + n2);
+    public static void somar(double n1, double n2){
+        System.out.println("Realizando a soma de " + n1 + " + " + n2 + "........");
         double soma = n1 + n2;
-        exibirResultadoPersonalizado(soma,"Soma");
+        exibirResultadoPersonalizado(soma, "Soma");
     }
+
+    //Função = tem retorno
+    //Procedimento = não tem retorno
+    public static double subtrair (double n1, double n2){
+        //
+        //return subtracao;
+        return n1 - n2;
+    }
+
 
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
         double valor1 = 0, valor2=0;
-        double resultado = 0;
+        //double resultado = 0; //variável local
         int opcao = 0;
         while (opcao!=6) {
             exibirMenu();
             opcao = leitor.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("\n\nDigite o 1. valor:");
+                    System.out.println("\nDigite o 1. valor:");
                     valor1 = leitor.nextDouble();
-                    System.out.println("\n\nDigite o 2. valor:");
+                    System.out.println("\nDigite o 2. valor:");
                     valor2 = leitor.nextDouble();
                     System.out.println("Os valores " + valor1 + " e " + valor2 + " foram armazenados\n\n");
                     break;
                 case 2:
-                    /*resultado = valor1 + valor2;
-                    exibirResultado(resultado);
-                    exibirResultadoPersonalizado(resultado, "Soma");*/
+//                    resultado = valor1 + valor2;
+//                    exibirResultado(resultado);
+//                    exibirResultadoPersonalizado(resultado, "Soma");
                     somar(valor1, valor2);
                     break;
                 case 3:
-                    resultado = valor1 - valor2;
-                    System.out.println("\n\nRealizando a subtração entre " + valor1 + " e " + valor2);
-                    exibirResultado(resultado);
-                    exibirResultadoPersonalizado(resultado, "Subtração");
+                    //resultado = valor1 - valor2;
+                    double sub = subtrair(valor1,valor2);
+                    System.out.println("\nRealizando a subtração entre " + valor1 + " e " + valor2);
+                    //exibirResultadoPersonalizado(resultado, "Subtração");
+                    exibirResultadoPersonalizado(sub, "Subtração");
                     break;
                 case 4:
 
-                    System.out.println("\n\nRealizando a divisão entre " + valor1 + " e " + valor2);
+                    System.out.println("\nRealizando a divisão entre " + valor1 + " e " + valor2);
+                    resultado = valor1 / valor2;
+
 
                     break;
                 case 5:
                     resultado = valor1 * valor2;
-                    System.out.println("\n\nRealizando a multiplicação entre " + valor1 + " e " + valor2);
+                    System.out.println("\nRealizando a multiplicação entre " + valor1 + " e " + valor2);
 
                     break;
                 case 6:
                     System.out.println("Saindo do sistema");
                     break;
             }
+
         }
     }
 
